@@ -2,6 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
+// import store from './Redux/Store.js';
+// import {Provider} from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {P_slice} from './Redux/Slice/Products_slice.js'
+
 
 import Header from './Components/Header/Header';
 import Hero from './Components/Hero/Hero';
@@ -17,6 +22,10 @@ import WomenProducts from './Components/Womenproduct';
 import KidsProducts from './Components/KidsProduct';
 import Details from './Components/Details';
 import Cart from './Components/Cart';
+
+
+import Login from './Components/useractivity/login';
+import Signup from './Components/useractivity/Signup'
 
 
 
@@ -137,6 +146,7 @@ const products = [
       const savedCart = localStorage.getItem('cartItems');
       return savedCart ? JSON.parse(savedCart) : [];
     });
+    const [isLogin, setIsLogin] = useState(true);
     useEffect(() => {
       
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -176,8 +186,9 @@ const products = [
     };
 
     return (
+      <>
         <Router>
-            <Header  cartItems={cartItems} />
+            <Header  cartItems={cartItems} isLogin={isLogin} setIsLogin={setIsLogin} />
             <Navbar />
             <Routes>
                 <Route path="/" element={
@@ -232,9 +243,15 @@ const products = [
                   } />
 
                     <Route path="/cart" element={<Cart cartItems={cartItems} onRemove={removeFromCart} onUpdateQuantity={updateQuantity} />} />
+                    <>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    </>
             </Routes>
             <Footer />
         </Router>
+        
+        </>
     );
 }
   

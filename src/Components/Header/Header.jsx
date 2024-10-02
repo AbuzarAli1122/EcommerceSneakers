@@ -1,9 +1,17 @@
 import React from 'react';
 import './Header.css';
 import { FaSearch, FaCartPlus } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
-const Header = ({ cartItems }) => {
+const Header = ({ cartItems,isLogin, setIsLogin }) => {
+  const navigate = useNavigate();
+  const handleAuthClick = () => {
+    if (isLogin) {
+      navigate('/login');
+    } else {
+      navigate('/signup');
+    }
+  };
   return (
     <header className="header">
       <button className="mobile-search-icon">
@@ -30,6 +38,11 @@ const Header = ({ cartItems }) => {
             <Link to="/cart" className="limited-offer">MY CART ({cartItems.length}) </Link>
           </div>
         </div>
+      </div>
+      <div className="auth-section">
+        <button className="auth-button" onClick={handleAuthClick}>
+          {isLogin ? 'Login' : 'Signup'}
+        </button>
       </div>
     </header>
   );
