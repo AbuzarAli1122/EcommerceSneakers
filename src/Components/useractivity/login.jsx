@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./styling.css";
+import "./loginsignup.css";
 
 
 const Login = () => {
@@ -10,12 +10,13 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Add logic to handle login, e.g., API call
-        console.log('Login details:', { email, password });
+        
     };
 
     return (
-        <div className="login-container">
+        
+        <div className="bodyp">
+            <div className='login-container'>
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
                 <div>
@@ -46,6 +47,7 @@ const Login = () => {
                 </button>
             </p>
             </form>
+        </div>
         </div>
     );
 };

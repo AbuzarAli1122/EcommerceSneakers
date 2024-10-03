@@ -44,6 +44,7 @@ const Header = ({ cartItems,isLogin, setIsLogin }) => {
           {isLogin ? 'Login' : 'Signup'}
         </button>
       </div>
+      
     </header>
   );
 };

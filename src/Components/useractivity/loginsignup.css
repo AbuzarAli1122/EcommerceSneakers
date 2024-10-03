@@ -1,10 +1,23 @@
+/* Centering the form */
+.bodyp {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-image: url('/Images/logsign.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-color: rgb(195, 179, 179); 
+}
+
 .login-container, .signup-container {
     width: 300px;
-    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 h2 {

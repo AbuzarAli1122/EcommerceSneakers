@@ -2,10 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
-// import store from './Redux/Store.js';
-// import {Provider} from 'react-redux';
+import store from './Redux/store.js';
+import {Provider} from 'react-redux';
 // import { useDispatch, useSelector } from 'react-redux';
-// import {P_slice} from './Redux/Slice/Products_slice.js'
 
 
 import Header from './Components/Header/Header';
@@ -146,7 +145,6 @@ const products = [
       const savedCart = localStorage.getItem('cartItems');
       return savedCart ? JSON.parse(savedCart) : [];
     });
-    const [isLogin, setIsLogin] = useState(true);
     useEffect(() => {
       
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -188,37 +186,55 @@ const products = [
     return (
       <>
         <Router>
-            <Header  cartItems={cartItems} isLogin={isLogin} setIsLogin={setIsLogin} />
-            <Navbar />
+            
             <Routes>
                 <Route path="/" element={
                     <>
+                    <Header  cartItems={cartItems}/>
+                    <Navbar />
                         <Hero />
                         <Infominicard />
                         <ShopByGender />
                         <Section />
                         <ProductList products={products} addToCart={addToCart} />
+                        <Footer />
+
                     </>
                 } />
                 <Route path="/home" element={
                     <>
+                      <Header  cartItems={cartItems}/>
+                        <Navbar />
                         <Hero />
                         <Infominicard />
                         <ShopByGender />
                         <Section />
                         <ProductList products={products} addToCart={addToCart} />
+                        <Footer />
+
                     </>
                 } />
 
                 {/* Product Details Route */}
-        <Route path="/detail/:productId/:productName" element={<Details products={products} addToCart={addToCart}  />} />
+        <Route path="/detail/:productId/:productName" element={
+          <>
+          <Header  cartItems={cartItems}/>
+          <Navbar />
+          <Details products={products} addToCart={addToCart}  />
+          <Footer />
+          </>
+          } />
 
 
                   {/* for contact page  */}
 
                 <Route path="/contact" element={
                   <>
+                  <Header  cartItems={cartItems}/>
+                  <Navbar />
                   <Contact />
+                  <Footer />
+
                   
                   </>
                   } />
@@ -227,28 +243,46 @@ const products = [
 
                   <Route path="/men" element={
                   <>
+                  <Header  cartItems={cartItems}/>
+                  <Navbar />
                   <MenProducts addToCart={addToCart}/>
+                  <Footer />
+
 
                   </>
                   } />
                    <Route path="/women" element={
                   <>
+                  <Header  cartItems={cartItems}/>
+                  <Navbar />
                   <WomenProducts products={products} addToCart={addToCart}/>
+                  <Footer />
+
                   </>
                   } />
                    <Route path="/kids" element={
                   <>
+                  <Header  cartItems={cartItems}/>
+                  <Navbar />
                   <KidsProducts addToCart={addToCart}/>
+                  <Footer />
+
                   </>
                   } />
 
-                    <Route path="/cart" element={<Cart cartItems={cartItems} onRemove={removeFromCart} onUpdateQuantity={updateQuantity} />} />
+                    <Route path="/cart" element={
+                      <>
+                      <Header  cartItems={cartItems}/>
+                      <Navbar />
+                      <Cart cartItems={cartItems} onRemove={removeFromCart} onUpdateQuantity={updateQuantity} />
+                      <Footer />
+                      </>
+                      } />
                     <>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     </>
             </Routes>
-            <Footer />
         </Router>
         
         </>

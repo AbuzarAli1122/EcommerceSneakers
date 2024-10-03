@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./styling.css";
+import "./loginsignup.css";
 
 
 
@@ -21,7 +21,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="signup-container">
+        <div className="bodyp">
+            <div className='signup-container'>
             <h2>Signup</h2>
             <form onSubmit={handleSignup}>
                 <div>
@@ -70,6 +71,7 @@ const Signup = () => {
                 </button>
             </p>
             </form>
+        </div>
         </div>
     );
 };
