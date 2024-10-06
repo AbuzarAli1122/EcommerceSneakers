@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import './Cart.css';
 import Billing from './Billing';
-
-/////////////////////////////////////////
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getCart, updateCart, deleteFromCart, clearCartItems } from '../Redux/Slice/cartSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 //////////////////////////////////////
 
 const Cart = ({ cartItems, onRemove, onUpdateQuantity }) => {
   const [coupon, setCoupon] = useState('');
   const [checkout, setCheckout] = useState(false);
+  const dispatch = useDispatch();
+  
 
   const handleQuantityChange = (event, index) => {
     const newQuantity = parseInt(event.target.value, 10);

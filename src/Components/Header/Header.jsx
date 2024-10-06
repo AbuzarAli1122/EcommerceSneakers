@@ -1,16 +1,24 @@
 import React from 'react';
 import './Header.css';
-import { FaSearch, FaCartPlus } from "react-icons/fa";
+import { FaSearch} from "react-icons/fa";
 import { Link,useNavigate } from 'react-router-dom';
 
 const Header = ({ cartItems,isLogin, setIsLogin }) => {
-  const navigate = useNavigate();
-  const handleAuthClick = () => {
-    if (isLogin) {
-      navigate('/login');
-    } else {
-      navigate('/signup');
-    }
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  // Perform any logout logic here (e.g., clearing tokens, resetting state)
+  setIsLogin(false);
+  navigate('/login');
+};
+
+const handleAuthClick = () => {
+  if (isLogin) {
+    handleLogout();
+  } else {
+    navigate('/login');  // Redirect to login or signup as per your logic
+  }
+
   };
   return (
     <header className="header">
@@ -39,10 +47,22 @@ const Header = ({ cartItems,isLogin, setIsLogin }) => {
           </div>
         </div>
       </div>
+      
       <div className="auth-section">
-        <button className="auth-button" onClick={handleAuthClick}>
-          {isLogin ? 'Login' : 'Signup'}
-        </button>
+        {isLogin ? (
+          <button className="auth-button" onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <>
+            <button className="auth-button" onClick={() => navigate('/login')}>
+              Login
+            </button>
+            <button className="auth-button" onClick={() => navigate('/signup')}>
+              Signup
+            </button>
+          </>
+        )}
       </div>
       
     </header>

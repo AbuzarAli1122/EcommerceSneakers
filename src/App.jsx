@@ -2,11 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
-import store from './Redux/store.js';
-import {Provider} from 'react-redux';
-// import { useDispatch, useSelector } from 'react-redux';
-
-
 import Header from './Components/Header/Header';
 import Hero from './Components/Hero/Hero';
 import Navbar from './Components/Nav/Navbar';
@@ -24,7 +19,9 @@ import Cart from './Components/Cart';
 
 
 import Login from './Components/useractivity/login';
-import Signup from './Components/useractivity/Signup'
+import Signup from './Components/useractivity/Signup';
+import Logout from './Components/useractivity/logout';
+
 
 
 
@@ -185,6 +182,7 @@ const products = [
 
     return (
       <>
+      
         <Router>
             
             <Routes>
@@ -281,9 +279,11 @@ const products = [
                     <>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/logout" element={<Logout />} />
                     </>
             </Routes>
         </Router>
+       
         
         </>
     );

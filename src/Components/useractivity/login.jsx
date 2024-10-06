@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import "./loginsignup.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/user_slice.js';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setIsLogin] = useState(true);
+    const dispatch = useDispatch();
+    const navigate = useNavigate(); 
+  const { isLoading, error } = useSelector((state) => state.user);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const resultAction = await dispatch(loginUser({ email, password }));
+    
+    // Check if the login was successful
+    if (loginUser.fulfilled.match(resultAction)) {
+        // Navigate to the home page upon successful login
+        navigate('/home');
+    }
     };
 
     return (
@@ -37,7 +48,8 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button className='btn' type="submit">Submit</button>
+                <button className='btn' type="submit" disabled={isLoading} >Submit</button>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <p>
                 Don't have an account?
                 <button >
